@@ -1,0 +1,40 @@
+import psycopg2
+
+try:
+    # Connect to your PostgreSQL database
+    connection = psycopg2.connect(
+        dbname="postgres",
+        user="postgres",
+        password="postgres",
+        host="localhost",
+        port="5432"
+    )
+
+    # Create a cursor object using the connection
+    cursor = connection.cursor()
+
+    # Print PostgreSQL Connection properties
+    print(connection.get_dsn_parameters(), "\n")
+
+    # Take SQL command as user input
+    sql_command = input("Enter your SQL command: ")
+
+    # Execute the SQL command provided by the user
+    cursor.execute(sql_command)
+
+    # Fetch all records if the command is a SELECT statement
+    if sql_command.strip().upper().startswith("SELECT"):
+        records = cursor.fetchall()
+        for record in records:
+            print(record)
+
+    # Commit the transaction
+    connection.commit()
+
+    # Close the cursor and connection
+    cursor.close()
+    connection.close()
+    print("PostgreSQL connection is closed")
+
+except (Exception, psycopg2.Error) as error:
+    print("Error while connecting to PostgreSQL:", error)

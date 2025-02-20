@@ -1,0 +1,7 @@
+CREATE TABLE SAVEGAME(
+    Email0 VARCHAR(255),
+    Email1 VARCHAR(255),
+    Timestamp INTEGER,
+    GameState TEXT,
+    PRIMARY KEY (Email0, Email1, Timestamp)
+);

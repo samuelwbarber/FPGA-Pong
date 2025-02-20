@@ -1,0 +1,40 @@
+CREATE TABLE USER_TBL
+(
+    Email VARCHAR(255) PRIMARY KEY,
+    firstName VARCHAR(255),
+    Score INTEGER,
+    ColourR INTEGER,
+    ColourG INTEGER,
+    ColourB INTEGER,
+    IndexIcon VARCHAR(255)
+);
+
+CREATE TABLE GAME_TO_USER
+(
+   Email VARCHAR(255) PRIMARY KEY,
+   GameID INTEGER
+);
+
+CREATE TABLE GAME_TBL
+(
+    Email VARCHAR(255),
+    IndexVal INTEGER,
+    PosBallX INTEGER,
+    PosBallY INTEGER,
+    PosPaddle0 INTEGER,
+    PosPaddle1 INTEGER,
+    PRIMARY KEY (Email, IndexVal),
+    FOREIGN KEY (Email) REFERENCES USER_TBL (Email)
+);
+
+
+Game start user enters email:
+
+SQL command to check if email already exists (returns 1 if exists 0 otherwise): SELECT COUNT(*) FROM USER_TBL WHERE Email = #EMAIL-ADDRESS;
+
+if exists run to retreive user data: SELECT firstName, Score, ColourR, ColourG, ColourB, IndexIcon FROM USER_TBL WHERE Email=#EMAIL-ADDRESS;
+
+otherwise ask user for first name, Colour and icon. Run command: INSERT INTO USER_TBL (Email, firstName, Score, ColourR,ColourG,ColourB,IndexIcon) values ('sam@gmail.com','sam', 0,RVAL,BVAL,GVAL,ICONVAL);
+
+
+if user choses to save game must run command: INSERT INTO GAME_TBL ()
